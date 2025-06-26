@@ -1,4 +1,3 @@
-// File: Cwe22_ZipSlip.java
 import java.io.*;
 import java.util.zip.*;
 
@@ -10,7 +9,7 @@ public class Cwe22_ZipSlip {
         ZipFile zf = new ZipFile(zipFile);
         zf.stream().forEach(e -> {
             try {
-                File out = new File("out/", e.getName()); // CWE-22
+                File out = new File("out/", e.getName()); 
                 out.getParentFile().mkdirs();
                 try (InputStream in = zf.getInputStream(e);
                      OutputStream os = new FileOutputStream(out)) {
