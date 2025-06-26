@@ -1,4 +1,3 @@
-// File: SqlInject.java
 import java.sql.*;
 import java.util.*;
 
@@ -14,7 +13,7 @@ public class SqlInject {
         System.out.print("Pass: ");
         String p = sc.nextLine();
 
-        String q = "SELECT * FROM users WHERE u='" + u + "' AND p='" + p + "';"; // CWE-89
+        String q = "SELECT * FROM users WHERE u='" + u + "' AND p='" + p + "';";
         ResultSet rs = c.createStatement().executeQuery(q);
         if (rs.next()) System.out.println("Welcome " + u);
         else System.out.println("Login failed");
