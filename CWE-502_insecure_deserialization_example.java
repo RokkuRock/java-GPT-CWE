@@ -1,4 +1,3 @@
-// File: UnsafeDeserialization.java
 import java.io.*;
 import java.net.*;
 public class UnsafeDeserialization {
@@ -6,7 +5,7 @@ public class UnsafeDeserialization {
         ServerSocket ss = new ServerSocket(9000);
         Socket s = ss.accept();
         ObjectInputStream ois = new ObjectInputStream(s.getInputStream());
-        Object o = ois.readObject(); // CWE-502
+        Object o = ois.readObject(); 
         System.out.println("Got: " + o);
         ois.close();
         ss.close();
