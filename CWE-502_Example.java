@@ -1,16 +1,14 @@
-// File: CWE502_UntrustedDeserialization.java
+// File: Cwe502_Deserialize.java
+import java.net.*;
 import java.io.*;
 
-public class CWE502_UntrustedDeserialization {
+public class Cwe502_Deserialize {
     public static void main(String[] args) throws Exception {
-        if (args.length != 1) {
-            System.out.println("Usage: java CWE502_UntrustedDeserialization <file.ser>");
-            return;
-        }
-        FileInputStream fis = new FileInputStream(args[0]);
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        Object obj = ois.readObject();
-        System.out.println("Deserialized: " + obj);
-        ois.close();
+        ServerSocket ss = new ServerSocket(9999);
+        Socket s = ss.accept();
+        ObjectInputStream ois = new ObjectInputStream(s.getInputStream());
+        Object obj = ois.readObject(); // CWE-502
+        System.out.println("Got: " + obj);
+        ois.close(); s.close(); ss.close();
     }
 }
