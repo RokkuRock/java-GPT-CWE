@@ -1,13 +1,14 @@
-// File: InsecureFile.java
-import java.io.*;
-import java.nio.file.*;
-import java.nio.file.attribute.*;
+// File: InsecurePerm.java
+import java.io.File;
+import java.io.FileWriter;
 
-public class InsecureFile {
+public class InsecurePerm {
     public static void main(String[] args) throws Exception {
-        Path p = Paths.get("secret.txt");
-        Files.writeString(p, "confidential");
-        // CWE-732: 沒有限制權限，預設允許所有人讀寫
-        System.out.println("Written secret.txt");
+        File f = new File("public_log.txt");
+        FileWriter fw = new FileWriter(f);
+        fw.write("Log entry");
+        fw.close();
+        f.setReadable(true, false); // CWE‑732: 全球可讀
+        System.out.println("Log created with insecure permissions.");
     }
 }
