@@ -1,13 +1,14 @@
-// File: XxeExample.java
+// File: Cwe405_XXE.java
 import javax.xml.parsers.*;
-import org.xml.sax.*;
+import org.w3c.dom.*;
 import java.io.*;
 
-public class XxeExample {
+public class Cwe405_XXE {
     public static void main(String[] args) throws Exception {
-        DocumentBuilderFactory df = DocumentBuilderFactory.newInstance();
-        DocumentBuilder db = df.newDocumentBuilder();
-        db.parse(new File("user.xml")); // CWE-405: 外部實體解析
-        System.out.println("Parsed");
+        File f = new File("user.xml");
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        DocumentBuilder db = dbf.newDocumentBuilder();
+        db.parse(f); // CWE-405
+        System.out.println("Root: " + db.parse(f).getDocumentElement().getNodeName());
     }
 }
